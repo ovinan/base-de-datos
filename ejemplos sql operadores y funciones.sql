@@ -1,3 +1,4 @@
+
 select *  
 from scott.emp
 ;
