@@ -107,7 +107,7 @@ ORDER BY 1,2;
 
 -- CASO 6: NATURAL  JOIN
 -- Es una variante del INNER JOIN: las columnas ha cruzar se determinan automaticamente por su nombre.
--- Formato NO ANSI: No se puede hacer este tipo de consulta en formato no ANSI
+-- Formato NO ANSI: No se puede hacer este tipo de consulta en el formato no ANSI
 -- Formato ANSI:
 SELECT dname,
        ename
