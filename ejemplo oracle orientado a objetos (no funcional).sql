@@ -51,7 +51,7 @@ SCOPE FOR (cliente) IS clientes_tab
 /
 ALTER TABLE pedidos_tab ADD (SCOPE FOR (item) IS items_tab) ;
 /
--- ESTA INSTRUCCION FALLA:
+-- ESTA INSTRUCCION FALLA (devuelve el error de que la columna no esta permitida aqui):
 INSERT INTO clientes_tab
  VALUES (
  1, "Lola Caro",
