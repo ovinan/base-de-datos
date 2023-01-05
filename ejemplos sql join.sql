@@ -1,3 +1,5 @@
+/* ADAPTADO DE: https://oracle-base.com/articles/misc/sql-for-beginners-joins */
+
 -- Lista de empleados
 SELECT * FROM scott.emp;
 
