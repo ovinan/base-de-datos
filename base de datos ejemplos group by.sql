@@ -1,11 +1,6 @@
 select *  
 from scott.emp;
 
-select empno as numero_empleado, ename nombre_empleado,  
-    job cargo, mgr numero_jefe, hiredate "fecha de contratacion",  
-    sal sueldo, comm comision, deptno departamento 
-from scott.emp empleados;
-
 select job 
 from scott.emp 
 group by job;
