@@ -1,13 +1,5 @@
-select *  
-from scott.emp
-;
 
-select empno as numero_empleado, ename nombre_empleado,  
-    job cargo, mgr numero_jefe, hiredate "fecha de contratacion",  
-    sal sueldo, comm comision, deptno departamento 
-from scott.emp empleados
-;
-
+/* Incluye iniciales CON GROUP BY BASICO Y FUNCIONES DE AGRUPACION */
 select job 
 from scott.emp 
 group by job
@@ -48,7 +40,15 @@ having deptno > 10
 order by 1 asc
 ;
 
+select *  
+from scott.emp
+;
 
+select empno as numero_empleado, ename nombre_empleado,  
+    job cargo, mgr numero_jefe, hiredate "fecha de contratacion",  
+    sal sueldo, comm comision, deptno departamento 
+from scott.emp empleados
+;
 
 select * from co.order_items
 ;
