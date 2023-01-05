@@ -20,7 +20,7 @@ CREATE OR REPLACE TYPE BODY Tipo_Cubo AS
     END;
 END;
 /
-/* Creamos la tabla de objetos */
+/* Creamos la tabla de objetos  */
 CREATE TABLE Cubos of Tipo_Cubo;
 /
 INSERT INTO Cubos VALUES(Tipo_Cubo (10, 10, 10));
