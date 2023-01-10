@@ -1,0 +1,79 @@
+ -- Todos los registros (filas) de la tabla empleados
+ SELECT * FROM hr.employees;
+ 
+/* Salario mas alto, mas bajo, total y promedio de todos los empleados
+ NOTA: Se estan usando funciones de agrupacion, sin ningun GROUP BY
+ Esto solo es posible porque se esta tomando toda la tabla como un grupo
+*/
+SELECT
+    MAX(salary) AS "Salario Máximo", 
+    MIN(salary) AS "Salario Mínimo", 
+    SUM(salary) AS "Salario Plantilla",
+    AVG(salary) AS "Salario Promedio",
+    TRUNC(AVG(salary)) AS "Salario Promedio truncado",
+    ROUND(AVG(salary)) AS "Salario Promedio redondeado"
+FROM hr.employees;
+
+/* Misma informacion anterior, por codigo de departamento
+   y ordenada por el salario promedio
+*/
+SELECT department_id,
+    MAX(salary) AS "Salario Máximo", 
+    MIN(salary) AS "Salario Mínimo", 
+    SUM(salary) AS "Salario Plantilla",
+    AVG(salary) AS "Salario Promedio",
+    TRUNC(AVG(salary)) AS "Salario Promedio truncado",
+    ROUND(AVG(salary)) AS "Salario Promedio redondeado"
+FROM hr.employees
+GROUP BY department_id
+ORDER BY 5;
+
+-- Cuantos empleados hay en cada departamento?
+-- (ordenado por numero de empleados)
+SELECT department_id, COUNT(*)
+FROM hr.employees
+GROUP BY department_id
+ORDER BY 2;
+
+-- Cuantos empleados hay en los departamentos
+-- de mas de 2 personas?
+SELECT department_id, COUNT(*)
+FROM hr.employees
+GROUP BY department_id
+HAVING COUNT(*) >=2 
+ORDER BY 2;
+
+-- La siguiente consulta da error
+SELECT department_id, COUNT(*)
+FROM hr.employees
+WHERE COUNT(*) >=2 
+GROUP BY department_id
+ORDER BY 2;
+
+/* Lista de los nombres y apellidos, en mayuscula
+    de los empleados del departamento 50*/
+SELECT first_name, last_name, email, UPPER(first_name), LOWER(last_name), INITCAP(email)
+FROM hr.employees
+WHERE department_id=50;
+
+/* Concatene @mycompany.com a las direcciones de correo
+   de los empleados del departamento 50 */
+SELECT first_name, last_name, email, LOWER(email)||'@mycompany.com'
+FROM hr.employees
+WHERE department_id=50;
+
+-- Muestre la antiguedad (en meses) de los empleados, ordenada descendente
+SELECT employee_id, first_name, last_name, hire_date,MONTHS_BETWEEN(sysdate, hire_date)
+FROM hr.employees
+ORDER BY 4 DESC;
+
+-- Muestra el año de contratacion de los empleados
+SELECT employee_id, first_name, last_name, hire_date,EXTRACT(year FROM hire_date)
+FROM hr.employees
+ORDER BY 4 DESC;
+
+/* Sabiendo que los dos primeros caracteres del campo JOB_ID son el nombre
+ del departamento, muestra el nombre del departamento de los empleados */
+SELECT employee_id, first_name, last_name, job_id,SUBSTR(job_id,1,2)
+FROM hr.employees
+ORDER BY 4 DESC;
