@@ -1,4 +1,39 @@
- -- Todos los registros (filas) de la tabla empleados
+-- Comprobación restricciones creadas en el sistema (Diccionario de datos)
+SELECT * FROM user_cons_columns;
+/* Creación de la tabla alumnos, CON restricción de clave primaria
+ NOTA 1: De esta forma, automáticamente el SGBD crea un índice
+ NOTA 2: Además, también automáticamente, se crea la restricción de unicidad */
+CREATE TABLE alumnos (
+    dni VARCHAR2(9) NOT NULL CONSTRAINT alumnos_pk PRIMARY KEY,
+    id_alumno NUMBER NOT NULL,
+    nombre VARCHAR2 (10),
+    apellidos VARCHAR2(40)
+);
+-- Creación de la tabla clase, SIN restricción de clave primaria
+CREATE TABLE clase (
+    id_clase NUMBER NOT NULL,
+    nombre VARCHAR2(10)
+);
+-- Comprobación restricciones creadas automáticamente por el sistema
+SELECT * FROM user_cons_columns;
+-- Modificación de la tabla clase, para añadir la clave primaria
+ALTER TABLE clase 
+ADD CONSTRAINT clase_id_clase PRIMARY KEY (id_clase);
+-- Modificación de la tabla alumnos, para incluir una restricción de unicidad
+ALTER TABLE alumnos 
+ADD CONSTRAINT alumnos_id_alumno UNIQUE (id_alumno);
+-- Comprobación restricciones creadas en el sistema
+SELECT * FROM user_cons_columns;
+-- Añadir una clave foránea (por ejemplo por relación 1:N entre alumno y clase)
+ALTER TABLE alumnos 
+ADD id_clase_fk NUMBER NOT NULL 
+CONSTRAINT alumnos_id_clase_fk REFERENCES clase(id_clase);
+-- Comprobación restricciones creadas en el sistema
+SELECT * FROM user_cons_columns;
+
+
+
+-- Todos los registros (filas) de la tabla empleados
  SELECT * FROM hr.employees;
  
 /* Salario mas alto, mas bajo, total y promedio de todos los empleados
