@@ -112,3 +112,23 @@ ORDER BY 4 DESC;
 SELECT employee_id, first_name, last_name, job_id,SUBSTR(job_id,1,2)
 FROM hr.employees
 ORDER BY 4 DESC;
+
+-- Lista de los empleados sin comisiones
+SELECT * 
+FROM hr.employees
+WHERE commission_pct IS NULL;
+
+-- Lista de sueldo+comisiones de los empleados
+-- NOTA: Esta consulta no funciona cuando la comision es NULL
+SELECT employee_id, first_name, last_name, salary, commission_pct, salary+commission_pct 
+FROM hr.employees;
+
+-- Con la funcion NVL sustituimos el valor en caso de NULL
+SELECT employee_id, first_name, last_name, salary, commission_pct, salary + NVL(commission_pct,0) 
+FROM hr.employees;
+
+-- Lista de sueldo+comisiones * sueldo de los empleados
+SELECT employee_id, first_name, last_name, salary, commission_pct, commission_pct * salary, 
+salary + NVL2(commission_pct,commission_pct * salary,0) 
+FROM hr.employees;
+
