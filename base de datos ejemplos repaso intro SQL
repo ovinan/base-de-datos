@@ -78,7 +78,7 @@ GROUP BY department_id
 HAVING COUNT(*) >=2 
 ORDER BY 2;
 
--- La siguiente consulta da error
+-- La siguiente consulta da error (pq la condicion de un grupo no se pone en el WHERE)
 SELECT department_id, COUNT(*)
 FROM hr.employees
 WHERE COUNT(*) >=2 
@@ -131,4 +131,11 @@ FROM hr.employees;
 SELECT employee_id, first_name, last_name, salary, commission_pct, commission_pct * salary, 
 salary + NVL2(commission_pct,commission_pct * salary,0) 
 FROM hr.employees;
+
+-- Comparativa de las fechas y horas del sistema
+SELECT sysdate AS "Fecha y hora sysdate sin formatear", 
+    TO_CHAR(sysdate, 'DD-MM-YYYY HH24:MI:SS') AS "Fecha y hora  con sysdate formateado", 
+    systimestamp "Fecha y hora del sistema con systimestamp"
+FROM dual;
+
 
